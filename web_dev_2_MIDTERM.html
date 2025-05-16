@@ -1,0 +1,204 @@
+<!--Web Development 2 Midterm Exam-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midterm</title>
+</head>
+<body>
+    <!--Q1-->
+    <div id="box" style="width: 40%; background-color: rgb(149, 168, 146); border: 4px solid rgb(102, 145, 147); font-size:large;  overflow-y:auto;">
+        <p id = "para1"></p>
+    </div>
+    <button id="button1">Display intArray and root of each value</button>
+    <br>
+    <!--Q2-->
+    <br>
+    <label for="indexInput">change city name: </label>
+        <input type="number" id="idxInput" placeholder="input valid index of the city" min="0" max="19"/>
+        <input type="text" id="ctyInput" placeholder="input city name"/>
+        <button id="button2">change name</button>
+        <br> 
+        <div style="width: 40%; border: 4px solid rgb(102, 145, 147); font-size:large; overflow-y:auto;">
+            <p id = "para2"></p>
+        </div>
+        <br>
+    <!--Q3-->
+    <label for="charInput">enter a character(letter): </label>
+            <input type="text" id="charInput" />
+            <button id="button3">Find cities</button>
+        <br>
+        <div style="width: 40%; border: 4px solid rgb(102, 145, 147); font-size:large; overflow-y:auto;">
+            <p id = "para3"></p>
+        </div>
+        <br>
+    <!--Q4-->
+    <br>
+    <div style="width: 40%; border: 4px solid rgb(102, 145, 147); font-size:large; overflow-y:auto;">
+        <p id = "para4"></p>
+    </div>
+    <button id="button4">Find the city with the longest name</button>
+    <br>
+    <!--Q5-->
+    <br>
+    <label for="indexInput">Find cities within a range of character lengths: </label>
+        <input type="number" id="minChar" placeholder="input minimum character lenght"/>
+        <input type="number" id="maxChar" placeholder="input maximum character length"/>
+        <button id="button5">Find cities</button>
+        <br> 
+    <div style="width: 40%; border: 4px solid rgb(102, 145, 147); font-size:large; overflow-y:auto;">
+        <p id = "para5"></p>
+    </div>
+    <br>
+    <!--Q6-->
+        <!--see script-->
+</body>
+<script>
+    /* Q1 */
+
+    const intArray = [
+        -2,
+        12,
+        30,
+        -84,
+        29,
+        -62,
+        4,
+        -27,
+        201,
+        3000,
+        45,
+        -88,
+    ];
+
+    const btn1Click = document.getElementById("button1");
+    const display = document.getElementById("para1");
+
+    btn1Click.addEventListener("click", function(){
+        display.innerHTML = ""; //clear the list every time the button is clicked
+
+        intArray.forEach(value => {
+
+        const cubeRoot = value < 0 ? -Math.pow(Math.abs(value), 1 / 3) : Math.pow(value, 1 / 3);
+        display.innerHTML += `Integer: ${value} | Cube root: ${cubeRoot} <br>`;
+        });
+    });
+
+    //==================================================================================================================
+    /* Q2 */
+
+    const cityNames = [
+        "Seattle",
+        "Bellevue",
+        "Renton",
+        "Issaquah",
+        "Tacoma",
+        "Kent",
+        "Olympia",
+        "Spokane",
+        "Vancouver",
+        "Portland",
+        "Eugene",
+        "Florence",
+        "Astoria",
+        "Salem",
+        "Tillamook",
+        "LA",
+        "San_Diego",
+        "San_Fransisco",
+        "Fresno",
+        "Oakland",
+    ];
+
+    const btn2Click = document.getElementById("button2");
+    const display2 = document.getElementById("para2");
+    const idxInput = document.getElementById("idxInput");
+    const ctyInput = document.getElementById("ctyInput");
+
+    cityNames.forEach((city, index) => display2.innerHTML += `index : ${index}  |  City : ${city} <br>`);
+
+    btn2Click.addEventListener("click", function(){
+        display2.innerHTML = ""; //clear the list every time the button is clicked
+
+        let index = idxInput.value;
+        let city = ctyInput.value;
+
+        cityNames[index] = city;
+
+        cityNames.forEach((city, index) => display2.innerHTML += `index : ${index}  |  City : ${city} <br>`);
+
+    });
+
+    //================================================================================================================================
+    /* Q3 */
+
+    const btn3Click = document.getElementById("button3");
+    const display3 = document.getElementById("para3");
+    const charInput = document.getElementById("charInput");
+
+    btn3Click.addEventListener("click", function(){
+        display3.innerHTML = ""; //clear the list every time the button is clicked
+
+        let character = charInput.value;
+
+        display3.innerHTML += cityNames.filter((value) => value.startsWith(character));
+    });
+
+    //=================================================================================================================================
+    /* Q4 */
+
+    const btn4Click = document.getElementById("button4");
+    const display4 = document.getElementById("para4");
+
+    btn4Click.addEventListener("click", function(){
+        display4.innerHTML = ""; //clear the list every time the button is clicked
+
+        display4.innerHTML += cityNames.sort(function(a, b) {
+            return b.length - a.length})[0];
+
+    });
+
+
+    //=================================================================================================================================
+    /* Q5 */
+
+    const btn5Click = document.getElementById("button5");
+    const display5 = document.getElementById("para5");
+    const minChar = document.getElementById("minChar");
+    const maxChar = document.getElementById("maxChar");
+
+    btn5Click.addEventListener("click", function(){
+        display5.innerHTML = ""; //clear the list every time the button is clicked
+
+        let min = minChar.value;
+        let max = maxChar.value;
+
+        display5.innerHTML += cityNames.filter(function (city) {
+            return city.length >= min && city.length <= max;
+        });
+
+    });
+
+
+    //=================================================================================================================================
+    /* Q6 */
+
+    function getRandomColor() {
+        const r = Math.floor(Math.random() * 256); // 0–255
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        return `rgb(${r}, ${g}, ${b})`;
+      };
+
+    document.addEventListener("keydown", function(event) {
+
+        if ((event.ctrlKey || event.metaKey) && event.key === 's') {
+             event.preventDefault(); //prevents the default save action
+                document.getElementById('box').style.backgroundColor = getRandomColor();
+        }
+    });
+
+    
+</script>
+</html>
