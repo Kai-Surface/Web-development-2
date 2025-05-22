@@ -1,0 +1,144 @@
+<!--Assignment 1-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <div style="width: 40%; border: 4px solid rgb(102, 145, 147); font-size:large; overflow-y:auto;">
+             <p id = "para1"></p>
+    </div>
+
+     <!--Q1-->
+     <br>
+     <label>1. Input a number: </label>
+         <input type="number" id="numInput" placeholder="input a number" />
+    <label>Multiply to the power of: </label>
+         <input type="number" id="powInput" placeholder="input a number"/>
+         <button id="btnCompPower">compute power</button>
+         <br>
+
+    <!--Q2-->
+    <br>   
+    <label>2. Input the length of side A of a triangle: </label>
+        <input type="number" id="aInput" placeholder="input a number" />
+    <label>Input the length of side B of a triangle: </label>
+        <input type="number" id="bInput" placeholder="input a number"/>
+        <button id="btnCompHypotenuse">Compute hypotenuse</button>
+    <br>
+
+    <!--Q3-->
+    <p>3. </p>
+    <button id="btnPrintOddNegatives">Display the odd negative values of numList</button>
+    <br>
+
+    <!--Q4-->
+    <p>4. </p>
+    <button id="btnDisplayAvg">Display the average of all the values of numList</button>
+    <br>
+
+    <!--Q5-->
+    <p>5. </p>
+    <button id="btnDisplayBool">Display True if all students are passing or False if at least one is failing</button>
+    <br>
+    
+</body>
+<script>
+    /* Q1 */
+    const btnCompPower = document.getElementById("btnCompPower");
+    const display = document.getElementById("para1");
+    const numInput = document.getElementById("numInput");
+    const powInput = document.getElementById("powInput");
+
+    btnCompPower.addEventListener("click", function(){
+        display.innerHTML = ""; //clear the list every time the button is clicked
+
+        let base = parseFloat(numInput.value);
+        let exponent = parseFloat(powInput.value);
+        let result = Math.pow(base, exponent);
+
+        display.innerHTML += `1. ${base} to the power of ${exponent} is ${result} <br>`;
+
+    });
+
+    /* Q2 */
+
+    const btncompHypotenuse = document.getElementById("btnCompHypotenuse");
+    const aInput = document.getElementById("aInput");
+    const bInput = document.getElementById("bInput");
+
+    btncompHypotenuse.addEventListener("click", function(){
+        let a = parseFloat(document.getElementById("aInput").value);
+        let b = parseFloat(document.getElementById("bInput").value);
+        let c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+
+        display.innerHTML += `2. If side A of a triangle is length ${a}, and side B is length ${b}, the hypotenuse is ${c} <br>`;
+
+    });
+
+    /* Q3 */
+
+    const numList = [81, 8, 70, 23, -90, 37, -32, -98, 58, 76, -97, 77, -36, -27, 36, 96, -98, 5, -7, -82];
+    const btnPrintOddNegatives = document.getElementById("btnPrintOddNegatives");
+
+    displayOddNegatives=function(array){
+        let oddNegatives = [];
+        for(let i=1; i<=array.length; i++){
+            if (array[i] % 2 !== 0 && array[i] < 0) {
+                oddNegatives.push(array[i]); 
+            }
+        };
+        return oddNegatives.join(", ");
+    };
+
+    btnPrintOddNegatives.addEventListener("click", function(){
+        display.innerHTML += `3. The odd negative values of numList are: ${displayOddNegatives(numList)} <br>`;
+    });
+
+    /* Q4 */
+
+    const btnDisplayAvg = document.getElementById("btnDisplayAvg");
+
+    btnDisplayAvg.addEventListener("click", function(){
+        let sum = 0;
+        let count = 0;
+
+        //anonomous function
+        numList.forEach(function(element){
+            sum += element;
+            count++;
+        });
+
+        //lambda
+        numList.forEach((element)=> {sum += element; count++;});
+
+        const average = sum / count;
+        
+        display.innerHTML += `4. The average of all the values of numList is: ${average} <br>`;
+    });
+
+    /* Q5 */
+
+    const grades = [77, 81, 90, 95, 100, 100, 70];
+    const btnDisplayBool = document.getElementById("btnDisplayBool");
+
+    btnDisplayBool.addEventListener("click", function(){
+        //anonomous function
+        let results = grades.every(function(value){
+            if(value >= 70 && value <= 100)
+                return true;
+            else
+                return false;
+        });
+
+        //lambda
+        //let result = grades.every(value => value >= 70 && value <= 100);
+
+        display.innerHTML += `5. All students are passing: ${results} <br>`;
+    });
+
+</script>
+</html>

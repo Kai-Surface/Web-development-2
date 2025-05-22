@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background-color: rgba(149, 168, 146, 1);
+            border: 2px solid #333;
+            margin: 5px;
+            
+            font-family: sans-serif;
+            font-size: 20px;
+            
+        }
+    </style>
+</head>
+<body>
+    <h3>timers: setTimeout & setInterval</h3>
+    <label for="txttime">Enter time in seconds: </label><input type="text" id="input1" size="5">
+    <div id="box1">setTimeout method <br></div>
+    <button id="cancelButton">Clear Timeout</button>
+
+    <script>
+        //change the box1 background color after a certain time has elapsed
+        let delaytime = 4000
+        //timerId = window.setTimout(function(){
+        
+        //}, delaytime);
+
+        timerId = setTimeout{()=>{
+            document.getElementById("box1").style.backgroundColor = getRandomColor();
+        }, delaytime};
+
+        //attach a click event to button
+        document.getElementById("cancelbutton").addEventListener("click", (ev))
+    </script>
+    
+</body>
+</html>
