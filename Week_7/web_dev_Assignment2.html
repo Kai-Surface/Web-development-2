@@ -1,0 +1,81 @@
+<!--Web Development 2 Assingment 2: Timers  | May 2025-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(47, 28, 14);
+        }
+    </style>
+</head>
+<body>
+    <div id="box"; style="width: 100px; height: 100px; background-color: rgb(102, 145, 147); position: absolute;"></div>
+    <button id="startTimer"; style="position: relative;">Start timer</button>
+    <button id="stopTimer"; style="position:relative;">Stop timer</button>
+</body>
+<script>
+    const startTimer = document.getElementById("startTimer");
+    const stopTimer = document.getElementById("stopTimer");
+    const box = document.getElementById("box");
+
+    let x = 0;
+    let y = 0;
+    let dx = 1;
+    let dy = 1;
+
+    //starting position
+    box.style.left = x + "px";
+    box.style.top = y + "px";   
+
+    let intervalTimer = null;
+
+    function timer(){
+        const boxHeight = box.offsetHeight;
+        const boxWidth = box.offsetWidth;
+        const screenHeight = window.innerHeight;
+        const screenWidth = window.innerWidth;
+
+        x += dx;
+        y += dy;
+
+        //right edge
+        if (x + boxWidth >= screenWidth) {
+            x = screenWidth - boxWidth; //bounce off edges
+            dx = -dx;
+        }
+        else if (x <= 0) { //left edge
+            x = 0;
+            dx = -dx;
+        }
+
+        //bottom edge
+        if (y + boxHeight >= screenHeight) {
+            y = screenHeight - boxHeight;
+            dy = -dy;
+        }
+        else if (y <= 0) { //top edge
+            y = 0;
+            dy = -dy;
+        }
+
+        box.style.left = x + "px";
+        box.style.top = y + "px";  
+    };
+
+    startTimer.addEventListener("click", function() {
+        if (!intervalTimer) { //only runs if there is no other instance already running
+            intervalTimer = setInterval(timer, 15);
+        }
+    });
+
+    stopTimer.addEventListener("click", function() {
+        if (intervalTimer) {
+            clearInterval(intervalTimer);
+            intervalTimer = null;
+        }
+    });
+</script>
+</html>
