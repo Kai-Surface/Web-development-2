@@ -37,6 +37,7 @@
             return `Account #${this.account_number}: $${this.balance}`;
         }
 
+        //method to subtract given amount from balance
         makepurchase(purchaseprice){
 
             if(purchaseprice <= this.balance){
@@ -61,6 +62,7 @@
 
     document.getElementById("btndisplay").addEventListener("click", displayAccounts);
     
+    //display function
     function displayAccounts() {
         const display = document.getElementById("display");
         display.innerHTML = "";
@@ -85,6 +87,7 @@
         const account = accounts[index];
         const successfulPurchase = account.makepurchase(purchaseprice);
 
+        //handles purchase
         if (successfulPurchase){
             alert(`Purchase successful! New balance: $${account.balance}`);
 
