@@ -1,0 +1,44 @@
+<!--web dev week 9 6/4/25-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Accessing Radio Buttons</h2>
+
+    <h3>Select your favorite drink:</h3>
+    <label><input type="radio" name="drink" value="Water"> Water</label><br>
+    <label><input type="radio" name="drink" value="Juice"> Juice</label><br>
+    <label><input type="radio" name="drink" value="Soda"> Soda</label><br>
+
+    <h3>Select your favorite snack:</h3>
+    <label><input type="radio" name="snack" value="Chips"> Chips</label><br>
+    <label><input type="radio" name="snack" value="Cookies"> Cookies</label><br>
+    <label><input type="radio" name="snack" value="Fruit"> Fruit</label><br>
+
+    <br>
+    <button>Submit</button>
+    <br>
+    <p id="result"></p>
+
+<script>
+        display = document.getElementById("result");
+        document.querySelector(button).addEventListener("click", ()=>{
+            const selectedDrink = document.querySelector('input[name="drink"]:checked')
+            const selectedSnack = document.querySelector('input[name="snack"]:checked')
+
+            //if a selection is made return its valye otherwise return "None"
+            const drink = selectedDrink? selectedDrink.value: "None";
+            const snack = selectedSnack? selectedSnack.value: "None";
+
+            //display
+            display.innerHTML = `from drinks: ${drink} is selected <br>`;
+            display.innerHTML = `from snack: ${snack} is selected <br>`;
+        });
+
+</script>    
+</body>
+</html>

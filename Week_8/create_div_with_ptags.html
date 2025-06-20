@@ -1,0 +1,65 @@
+<!--wed dev 2 lecture 9 5/28/25-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>Anything you see past the button was created dynamically</h4>
+    <button>Click to add elements to this page</button>
+
+    <script>
+        document.querySelector('button').addEventListener("click", () => {
+            const div1 = document.createElement('div');
+            //add test to it: use the innerText property
+            div1.innerText = "This div was created dynamically"
+            //setting some styles
+            div1.style.height = 
+            div1.style.height = 150+"px";
+            div1.style.textAlign = "center";
+            div1.style.fontSize = 12 + getRandomColor(10) + "px";
+            div1.style.color = getRandomColor();
+
+            div1.style.display = "inline-block";
+
+            //add div1 to this document body
+            document.body.appendChild(div1);
+
+            //add 3 ptags
+            //create an array with 3 texts, one for each page
+            const texts = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", 
+            "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", 
+            "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."]  
+            
+            //create 3 ptags within a for loop
+            for(let i=0; i<=2; i++){
+                //create a new ptag
+                let ptag = document.createElement('p');
+                //create textnode to be appendded to the ptag
+                let textnode = document.createTextNode(texts[i]);
+                ptag.appendChild(div1);
+                //set style
+                ptag.style.fontSize = 15 + getRandomInt(15)+"px";
+                ptag.style.color = getRandomColor()
+                //append the ptag to div1
+                div1.appendChild(ptag);
+            }
+        
+        });
+        //function to generate a random hex color
+        function getRandomColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        };
+    </script>
+</body>
+</html>

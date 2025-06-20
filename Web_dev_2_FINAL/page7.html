@@ -1,0 +1,55 @@
+<!--Web Development 2 Final June 2025-->
+<!--Prompt 7-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 7</title>
+</head>
+<body style="background-color:rgb(149, 168, 146);">
+
+    <h4>7. Sequence through guard dog breeds with the interval timer!<br></h4>
+
+    <button id="btnStart">Start the interval timer</button>
+    <button id="btnStop">Stop the interval timer</button>
+    <p id="display"></p>
+    
+<script>
+
+    const display = document.getElementById('display');
+    const startTimer = document.getElementById('btnStart');
+    const stopTimer = document.getElementById('btnStop');
+
+    //declare array
+    const arr = ["German Shepherd", "Rottweiler", "Dobermann", "Giant Schnauzer", "Cane Corso", "Belgian Malinios"];
+
+    let intervalTimer = null;
+    let currentIndex = 0;
+
+    //function to sequence through the array
+    function timer(){
+        display.textContent = arr[currentIndex];
+        currentIndex = (currentIndex + 1) % arr.length;
+    };
+
+    //calls timer function
+    startTimer.addEventListener("click", function() {
+        if (!intervalTimer) { //only runs if there is no other instance already running
+            timer();
+            intervalTimer = setInterval(timer, 2000); // every 2 seconds
+        }
+    });
+
+    //stops timer once its sequenced all the way to belgian malinios
+    stopTimer.addEventListener("click", function() {
+        if (intervalTimer) {
+            clearInterval(intervalTimer);
+            intervalTimer = null;
+        }
+        
+    });
+
+</script>
+</body>
+</html>

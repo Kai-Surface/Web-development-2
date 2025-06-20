@@ -1,0 +1,49 @@
+<!--5/28/25-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>Creating a list of items dynamically</h4>
+    <!--Add a heading: favorite film franchise-->
+    <!--Add a list of films-->
+    <div id="main-div">
+
+    </div>
+
+    <script>
+
+        //create a ul
+        const ultag = document.createElement("ul");
+        //set up an array of film titles
+        const films = ["DC", "Tolkien", "Cartoon Saloon"];
+
+        //loop through the movies, create <li> for each title
+            for(let i=0; i<films.length; i++){
+                //create a li tag
+                let litag = document.createElement("li");
+                //create its text node
+                let text = document.createTextNode(films[i]);
+                //append text to its li tag
+                litag.appendChild(text);
+                //append li to ul
+                ultag.appendChild(litag);
+            }
+            //add 3 p tags
+
+            //create a title with h3
+            const h3tag = document.createElement("h3")
+            const text = document.createTextNode("Favorite movies...")
+            h3tag.appendChild(text);
+            document.getElementById("main-div").appendChild(h3tag);
+
+            //append ul tag to the main-div
+            document.getElementById("main-div").appendChild(ultag);
+
+            //document.getElementById("")
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!--Web Development 2 Final June 2025-->
+<!--Prompt 1-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 1</title>
+</head>
+<body style="background-color:rgb(149, 168, 146);">
+    <h4>1. Click inside the div!<br></h4>
+    <div id="mainDiv" style="width: 400px; height: 400px; background-color: rgb(149, 168, 146); border: 4px solid rgb(102, 145, 147); position: relative">
+    </div>
+
+<script>
+    const mainDiv = document.querySelector('#mainDiv');
+
+    //function to create a new div and append to the first div
+    mainDiv.addEventListener('mousedown', function(event) {
+        const div1 = document.createElement('div');
+
+        // get mouse position relative to mainDiv
+        const rect = mainDiv.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        div1.style.left = x + 'px';
+        div1.style.top = y + 'px';
+
+        //styling
+        div1.style.width = 50+"px";
+        div1.style.height = 50+"px";
+        div1.style.backgroundColor = getRandomColor();
+        div1.style.border = "1px solid black";
+        div1.style.position = "absolute";
+        div1.style.display = "inline-block";
+
+        //add div1 to maindiv
+        mainDiv.appendChild(div1);
+    })
+
+    //function to generate a random hex color
+    function getRandomColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+</script>
+</body>
+</html>

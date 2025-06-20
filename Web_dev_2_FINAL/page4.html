@@ -1,0 +1,82 @@
+<!--Web Development 2 Final June 2025-->
+<!--Prompt 4-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 4</title>
+</head>
+<body style="background-color:rgb(149, 168, 146);">
+    <h4>4. Generate 3 random integers between 10-99. Click on Calculate Integers to double the largest value, triple the middle value, and quadruple the smallest value.<br></h4>
+    <button id="btnIntegers">Generate Integers</button>
+    <button id="btnCalculate">Calculate Integers</button> <!--It seemed tidier to have this functionality as a seperate button-->
+
+<script>
+
+    //ptag for display
+    const p = document.createElement('p');
+    document.body.appendChild(p);
+
+    //Declare integers, result veriable
+    let int1, int2, int3;
+    let result = {};
+    
+
+    //Function to get random integers and format the display when button is clicked
+    function getIntegers() {
+        //generate random integers
+        int1 = Math.floor(Math.random() * 90) + 10; // 10–99
+        int2 = Math.floor(Math.random() * 90) + 10;
+        int3 = Math.floor(Math.random() * 90) + 10;
+
+        //declare int array that will be used in the next function
+        let ints = [int1, int2, int3];
+
+        //call the minmaxmed function
+        result = getMinMaxMed(ints);
+        
+        //formatting
+        p.innerHTML = `Integers: <br>
+        1. ${int1} <br>
+        2. ${int2} <br>
+        3. ${int3} <br><br>`;
+    }
+
+    //Function to identify the min, max, and middle value of the generated integers
+    function getMinMaxMed(ints){
+        //sort ints array
+        ints.sort((a, b) => a - b);
+
+        return {
+            "Smallest": ints[0],
+            "Middle": ints[1],
+            "Largest": ints[2]
+        };
+    }
+
+    //function to calculate the integers and format their display when button is clicked
+    function getCalculated() {
+        if (!result.Largest) { //catches if second button is pressed first
+            p.textContent = "You must generate integers first!";
+            return;
+        }
+
+        const int4 = result.Largest * 2; //double
+        const int5 = result.Middle * 3; //triple
+        const int6 = result.Smallest * 4; //quadruple
+
+        //formatting
+        p.innerHTML += `Calculated integers: <br>
+        1. Largest integer (${result.Largest}) doubled: ${int4} <br>
+        2. Middle integer (${result.Middle}) tripled: ${int5} <br>
+        3. Smallest integer (${result.Smallest}) quadrupled: ${int6}`;
+    }
+
+    //event listeners
+    document.getElementById('btnIntegers').addEventListener("click", getIntegers);
+    document.getElementById('btnCalculate').addEventListener("click", getCalculated);
+
+</script>
+</body>
+</html>

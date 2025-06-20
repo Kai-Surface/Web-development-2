@@ -1,0 +1,51 @@
+<!--Web Development 2 Final June 2025-->
+<!--Prompt 6-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 6</title>
+</head>
+<body style="background-color:rgb(149, 168, 146);">
+    
+    <h4>6. Click the button to display result<br></h4>
+
+    <p id="display"></p>
+    <button id="btnOddNeg">Get the first odd negative value of the array</button>
+    <p id="displayResult"></p>
+<script>
+
+    const display = document.getElementById('display');
+    const displayResult = document.getElementById('displayResult');
+    const arr = [
+    22,
+    28,
+    -11,
+    -4,
+    62,
+    96,
+    -95,
+    -91,
+    33,
+    -93,
+    -92
+    ];
+
+    display.textContent = "Here's an array of random values: " + arr.join(', ');
+
+    document.getElementById('btnOddNeg').addEventListener("click", () =>{
+        const oddNeg = arr.find(x => x % 2 !== 0 && x < 0);
+        const index = arr.indexOf(oddNeg);
+
+        if(oddNeg !== undefined){
+            displayResult.innerHTML = `The first odd negative number that occurs in the array is ${oddNeg}, at index ${index}`;
+        }
+        else{
+            displayResult.textContent = "No odd negative numbers found";
+        }
+    });
+
+</script>    
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!--Web Dev Week 9 6/4/25-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Accessing Radio Buttons</h2>
+
+    <h3>Select your favorite drink:</h3>
+    <label><input type="radio" name="drink" value="Water"> Water</label><br>
+    <label><input type="radio" name="drink" value="Juice"> Juice</label><br>
+    <label><input type="radio" name="drink" value="Soda"> Soda</label><br>
+
+    <h3>Select your favorite snack:</h3>
+    <label><input type="radio" name="snack" value="Chips"> Chips</label><br>
+    <label><input type="radio" name="snack" value="Cookies"> Cookies</label><br>
+    <label><input type="radio" name="snack" value="Fruit"> Fruit</label><br>
+
+    <br>
+    <button>Submit</button>
+    <br>
+    <p id="result"></p>
+
+    <script>
+        display = document.getElementById("result");
+        document.querySelector(button).addEventListener("click", ()=>{
+            const selecteddrinkradio = getSelectedRadio("drink");
+            const selectedsnackradio = getSelectedRadio("snack");
+            //display
+            let drink="None";
+            let snack="None";
+            if(selecteddrinkradio != null){
+               let drink = selecteddrinkradio.value; 
+            }
+            if(selectedsnackradio != null){
+                let snack = selectedsnackradio.value;
+            }
+            
+            display.innerHTML = `selected drink: ${drink} <br>selected snack: ${snack}`;
+        });
+
+        function getSelectedRadio(radio_name){
+            radios = document.getElementsByName(radio_name);
+            //sequence through all the radios searching for the selected one
+            for(let radio of radios) {//for loop
+                if(radio.checked)
+                    return radio;
+            }
+            return null;
+        }
+
+    </script>
+</body>
+
+</html>

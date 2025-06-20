@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>List of Employees</h4>
+    <button id="btndisplay">Display Employees</button>
+    <br>
+    <button id="btnchangephone">change phone number</button>
+    <p id="display"></p>
+
+    <script>
+        //define class employee
+        class Employee{
+            constructor(name, email, phone){
+                this.name = name;
+                this.email = email;
+                this.phone = phone;
+            }
+
+            setPhone(newPhoneNumer){
+                //check this method is passed a valid phone number
+                this.phone = newPhoneNumer;
+            }
+
+            displayInfo(){
+                return `${this.name} ${this.email} ${this.phone}`;
+            }
+        } //end of Employee class
+
+        //create an empty list of employees
+        //const employees = [emp1, emp2, emp3, emp4, emp5, emp6, emp7]; cant be up here because need to declare the employees first
+
+        const emp1 = new Employee("Alice", "alice@example.com","123-456-7890");
+        const emp2 = new Employee("Bob", "bob@example.com","987-654-3210");
+        const emp3 = new Employee("Henry Nguyen", "890-123-4567", "henry.nguyen@example.com");
+        const emp4 = new Employee("Isabella Rossi", "901-234-5678", "isabella.rossi@example.com");
+        const emp5 = new Employee("Jack Wilson", "012-345-6789", "jack.wilson@example.com");
+        const emp6 = new Employee("Karen Patel", "123-654-7890", "karen.patel@example.com");
+        const emp7 = new Employee("Leo Schneider", "234-765-8901", "leo.schneider@example.com");
+
+        const employees = [emp1, emp2, emp3, emp4, emp5, emp6, emp7];
+
+        //==================================================================================================
+
+        document.getElementById("btndisplay").addEventListener("click", ()=> {
+           document.getElementById("display").innerHTML="";
+           // for(let emp of employees){
+               // document.getElementById("display").innerHTML += `${emp.displayInfo()}<br>`
+           // } 
+
+            for(let index=0; index < employees.length; index++){
+                let emp = employees[index];
+                document.getElementById("display").innerHTML += `${index}: ${emp.displayInfo()} <br>`
+            }
+        });
+        document.getElementById("btnchangephone").addEventListener("click", ()=>{
+            //get name of employee
+            pnamd = document.getElementById("p_name").value;
+            //get new phone number from user
+            newphone = document.getElementById("p_phone").value;
+            //get the index of the employee whose name has been provided
+            let index = employees.findIndex(emp=> emp.name === pname);
+            if(index != -1){
+            //get the employee at the found index
+            //change the employee phone number using the setPhone method defined in the class
+            let emp = employees[index];
+            emp.setPhone(newphone);
+            //let employee = employees[index].setPhone()
+            }
+            else{
+                alert("No employee found with the given name")
+            }
+        })
+
+    </script>
+</body>
+</html>

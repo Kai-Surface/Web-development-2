@@ -1,0 +1,108 @@
+<!--Web Development 2 Final June 2025-->
+<!--Prompt 8, 9, 10-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 8</title>
+</head>
+<body style="background-color:rgb(149, 168, 146);">
+
+    <h4>8. Accounts: </h4>
+    <p id="display"></p>
+    <br>
+    <h4>9. Click to display accounts</h4>
+    <h4>List of Accounts</h4>
+    <button id="btndisplay">Display Accounts</button>
+    <br>
+    <h4>10. Make purchase: </h4>
+    <label>Input the index of the account you'd like to withdraw from: </label>
+        <input type="number" id="input1" placeholder="index" />
+    <label>Input the amount you'd like to withdraw: </label>
+        <input type="number" id="input2" placeholder="$$$" />
+    <button id="btnpurchase">Purchase</button>
+    
+<script>
+
+    //8. Define accounts class and method to withdraw an amount and update the balance
+
+    class Account{
+        constructor(account_number, balance){
+            this.account_number = account_number;
+            this.balance = balance;
+        }
+
+        displayInfo() {
+            return `Account #${this.account_number}: $${this.balance}`;
+        }
+
+        makepurchase(purchaseprice){
+
+            if(purchaseprice <= this.balance){
+                this.balance -= purchaseprice;
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    } 
+
+    //9. Preload an array of 5 accounts and display them
+
+    const act1 = new Account(1, 593);
+    const act2 = new Account(2, 2094);
+    const act3 = new Account(3, 8473);
+    const act4 = new Account(4, 27);
+    const act5 = new Account(5, 371);
+
+    const accounts = [act1, act2, act3, act4, act5];
+
+    document.getElementById("btndisplay").addEventListener("click", displayAccounts);
+    
+    function displayAccounts() {
+        const display = document.getElementById("display");
+        display.innerHTML = "";
+
+        for(let index=0; index < accounts.length; index++){
+            let act = accounts[index];
+            display.innerHTML += `${index}: ${act.displayInfo()} <br>`
+        };
+    };
+
+    //10. Apply purchase to the account at the given index
+
+    const btnpurchase= document.getElementById("btnpurchase");
+
+    btnpurchase.addEventListener("click", ()=> {
+        const indexInput = document.getElementById("input1");
+        const priceInput = document.getElementById("input2");
+
+        const index = parseInt(indexInput.value);
+        const purchaseprice = parseFloat(priceInput.value);
+
+        const account = accounts[index];
+        const successfulPurchase = account.makepurchase(purchaseprice);
+
+        if (successfulPurchase){
+            alert(`Purchase successful! New balance: $${account.balance}`);
+
+            displayAccounts();
+            //clear inputs
+            indexInput.value = "";
+            priceInput.value = "";
+        }
+        else{
+            alert("Insufficient funds for this purchase.")
+        }
+
+        // Clear inputs
+        indexInput.value = "";
+        priceInput.value = "";
+
+    });
+
+</script>
+</body>
+</html>

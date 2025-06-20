@@ -1,0 +1,53 @@
+<!--Web dev 2 week 10 6/9/25-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>Creating objects with constructor</h4>
+    <script>
+        const display = "hold";
+
+        function Cylinder(radius, height){
+            this.radius = radius;
+            this.height = height;
+
+            this.getVolume = function(){
+                return Math.PI * this.radius * this.height;
+            }
+
+            this.getArea = function(){
+                return 2 * Math.PI * this.radius * this.height;
+            }
+
+            this.getData = function(){
+                return 'radius: ${cy1.radius} height: ${cy1.height}';
+            }
+        }
+
+        cylinders = [];
+        //preload cylinders
+        for(let i=1; i<10; i++){
+            let r = 1.0 = getRandomValue(5);
+            let h = 3.0 + getRandomValue(10);
+            cylinders.push(new Cylinder(r,h));
+        }
+
+        btncreate = document.getElementById("create");
+        btncreate.addeventlistener("click", ()=>{
+            let r = 1.0 + getRandomValue(5);
+            let h = 3.0 + getRandomValue(10);
+            //create a cylinder
+            let cy = new Cylinder(r,h);
+            cylinders.push(cy);
+            alert("cylinders lenght:")
+        })
+        let cy1 = new Cylinder(2.3, 4.1);
+        display.innerHTML += `radius: ${cy1.radius} height: ${cy1.height}<br>`;
+        display.innerHTML += `volume: ${cy1.getVolume().toFixed(2)}`;
+    </script>
+</body>
+</html>

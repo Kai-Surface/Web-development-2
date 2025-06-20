@@ -1,0 +1,84 @@
+<!--Web Development 2 Final June 2025-->
+<!--Prompt 5-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 5</title>
+</head>
+<body style="background-color:rgb(149, 168, 146);">
+    
+    <h4>5. Array of people<br></h4>
+
+    <P id="display"></P>
+
+    <label>Input a name: </label>
+        <input type="text" id="input1" placeholder="John" />
+    <label>Input another name OR an index: </label>
+        <input type= "text" id="input2" placeholder="name OR index value" />
+    <br>
+    <button id="button1">Add new names to the array</button>
+    <button id="button2">Insert name at new index</button>
+    <button id="button3">Search name</button>
+    <br>
+    
+<script>   
+
+    const display = document.getElementById("display");
+    const input1 = document.getElementById("input1");
+    const input2 = document.getElementById("input2");
+    const addNames = document.getElementById("button1");
+    const insertName = document.getElementById("button2");
+    const searchName = document.getElementById("button3");
+    
+    //declare array
+    let names = ["James", "Kat", "Emile", "Linda", "Fred"];
+    displayArray();
+
+    //display function
+    function displayArray(){
+        display.innerHTML = "";
+
+        names.forEach((name, index) => {
+            display.innerHTML += `Index: ${index} || Value:  ${name}<br>`;
+        });
+    }
+
+    addNames.addEventListener("click", () => {
+        let firstInput = input1.value;
+        let secondInput = input2.value;
+
+        names.push(firstInput);
+        names.unshift(secondInput);
+
+        displayArray();
+        //clear inputs
+        input1.value = "";
+        input2.value = "";
+    });
+
+    insertName.addEventListener("click", () => {
+        let firstInput = input1.value;
+        let secondInput = parseInt(input2.value);
+
+        names.splice(secondInput, 0, firstInput);
+
+        displayArray();
+        //clear inputs
+        input1.value = "";
+        input2.value = "";
+    });
+
+    searchName.addEventListener("click", () => {
+        let name = names.indexOf(input1.value);
+        if (name > -1){
+            display.textContent = `${input1.value} is found at index ${name}`;
+        }
+        else {
+            display.textContent = `${input1.value} not found.`;
+        }
+    });
+</script>
+</body>
+</html>

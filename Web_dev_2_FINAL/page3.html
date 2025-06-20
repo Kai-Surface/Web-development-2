@@ -1,0 +1,38 @@
+<!--Web Development 2 Final June 2025-->
+<!--Prompt 3-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 3</title>
+</head>
+<body style="background-color:rgb(149, 168, 146);">
+    <h4>3. The following elements were created dynamically<br></h4>
+
+<script>
+    //Heading
+    let h3 = document.createElement('h3');
+    const text = document.createTextNode("This is page 3")
+    h3.appendChild(text);
+    document.body.appendChild(h3);
+
+    //List description (ptag)
+    let p = document.createElement('p');
+    const ptext = document.createTextNode("List of drinks:")
+    p.appendChild(ptext);
+    document.body.appendChild(p);
+
+    //List of drinks
+    const ul = document.createElement("ul");
+    const drinks = ["Coffee", "Tea", "Milk"];
+    for(let i=0; i<drinks.length; i++){
+        let li = document.createElement("li");
+        let litext = document.createTextNode(drinks[i]);
+        li.appendChild(litext);
+        ul.appendChild(li);
+    }
+    document.body.appendChild(ul);
+</script>
+</body>
+</html>
